@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <title>Ghost Legs Online</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ghost Legs implementation with HTML table">
+    <meta name="author" content="mckingho">
+    <meta name="keywords" content="ghost legs, ladder, random, pick, choice">
+    <meta property="og:title" content="Ghost Legs Online">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Ghost Legs implementation with HTML table">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>">
+    <link rel="stylesheet" href="./index.css">
+
+    <script type="module" src="./index.js"></script>
+</head>
+
+<body onload="update()">
+    <main>
+        <div id="main-body">
+            <div id="left-panel">
+                <table id="control-panel" cellspacing="0"></table>
+            </div>
+            <div id="right-panel">
+                <table id="main-board" cellspacing="0"></table>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
