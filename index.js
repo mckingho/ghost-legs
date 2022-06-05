@@ -7,6 +7,9 @@ import {
     addSwap,
     removeSwap,
     addColumn,
+    ROUTE_TOP,
+    ROUTE_LEFT,
+    ROUTE_TOP_LEFT,
     runRoute,
     shuffleHeads,
     shuffleFeet,
@@ -44,6 +47,7 @@ function updateBoard() {
     for (let c = 0; c < feet.length; c += 1) {
         let cell = footRow.insertCell(c);
         cell.classList.add("foot-cell");
+        cell.setAttribute("id", "foot-cell-" + c);
         let input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("id", "input-foot-" + c);
@@ -56,11 +60,19 @@ function updateBoard() {
     for (let c = 0; c < heads.length; c += 1) {
         let cell = headRow.insertCell(c);
         cell.classList.add("head-cell");
+        cell.setAttribute("id", "head-cell-" + c);
         let input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("id", "input-head-" + c);
         input.value = heads[c];
         cell.appendChild(input);
+        let runBtn = document.createElement("button");
+        runBtn.classList.add("run-btn");
+        runBtn.innerHTML = "RUN";
+        cell.appendChild(runBtn);
+        runBtn.addEventListener("click", function (event) {
+            handleRun(event, c);
+        });
     }
     let cell = headRow.insertCell(heads.length);
     cell.innerHTML = "+";
@@ -86,6 +98,8 @@ function updateBoardSize() {
 
 function handleClickSwap(event, col, row) {
     try {
+        resetRun();
+
         let cell = event.srcElement;
         if (cell.classList.contains("no-swap")) {
             addSwap(col, row);
@@ -100,6 +114,44 @@ function handleClickSwap(event, col, row) {
         console.error(e);
     }
 }
+
+function handleRun(event, col) {
+    try {
+        let { cellsRoute: route, colEnd } = runRoute(col);
+        for (let idx = 0; idx < route.length; idx += 1) {
+            let cell = document.getElementById("cell-" + idx);
+            if (route[idx] == ROUTE_TOP) {
+                cell.classList.add("run-top");
+            } else if (route[idx] == ROUTE_LEFT) {
+                cell.classList.add("run-left");
+            } else if (route[idx] == ROUTE_TOP_LEFT) {
+                cell.classList.add("run-top-left");
+            }
+        }
+        let head = document.getElementById("head-cell-" + col);
+        head.classList.add("run-left");
+        let foot = document.getElementById("foot-cell-" + colEnd);
+        foot.classList.add("run-left");
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function resetRun() {
+    let cells = document.querySelectorAll(".run-top");
+    [].forEach.call(cells, function (cell) {
+        cell.classList.remove("run-top");
+    });
+    cells = document.querySelectorAll(".run-left");
+    [].forEach.call(cells, function (cell) {
+        cell.classList.remove("run-left");
+    });
+    cells = document.querySelectorAll(".run-top-left");
+    [].forEach.call(cells, function (cell) {
+        cell.classList.remove("run-top-left");
+    });
+}
+
 
 window.onresize = updateBoardSize;
 window.update = update;

@@ -95,13 +95,14 @@ function runRoute(col) {
             if (cells[currentCol * rows + r] === CELL_SWAP) {
                 cellsRoute[currentCol * rows + r] = ROUTE_TOP;
                 cellsRoute[(currentCol + 1) * rows + r] = ROUTE_LEFT;
+                currentCol = currentCol + 1
                 continue;
             }
         }
         // no swap
         cellsRoute[currentCol * rows + r] = ROUTE_LEFT;
     }
-    return cellsRoute;
+    return { cellsRoute, colEnd: currentCol };
 }
 
 function shuffleHeads() {
@@ -144,6 +145,9 @@ export {
     addSwap,
     removeSwap,
     addColumn,
+    ROUTE_TOP,
+    ROUTE_LEFT,
+    ROUTE_TOP_LEFT,
     runRoute,
     shuffleHeads,
     shuffleFeet,

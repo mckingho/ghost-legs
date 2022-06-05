@@ -31,6 +31,19 @@ table#main-board td.swap {
     border-top: 1px solid;
 }
 
+table#main-board td.run-top {
+    border-top: 1px red solid;
+}
+
+table#main-board td.run-left {
+    border-left: 1px red solid;
+}
+
+table#main-board td.run-top-left {
+    border-top: 1px red solid;
+    border-left: 1px red solid;
+}
+
 table#main-board td.head-cell {
     padding-left: 2px;
     padding-right: 8px;
@@ -58,4 +71,20 @@ input[type=text] {
 
 input[type=text]:focus {
     background-color: #D9D9D9;
+}
+
+.run-btn {
+    display: block;
+    margin-top: 1px;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgb(27 31 35 / 4%) 0 1px 0, rgb(255 255 255 / 25%) 0 1px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.run-btn:hover {
+    background-color: #F3F4F6;
+    transition-duration: 0.1s;
 }
