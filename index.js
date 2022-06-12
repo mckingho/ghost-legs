@@ -84,6 +84,11 @@ function addFootCell(footRow, c) {
     input.addEventListener("input", function (event) {
         setFoot(c, event.target.value);
     });
+    input.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            event.target.blur();
+        }
+    });
     cell.appendChild(input);
 }
 
@@ -97,6 +102,11 @@ function addHeadCell(headRow, c) {
     input.value = heads[c];
     input.addEventListener("input", function (event) {
         setHead(c, event.target.value);
+    });
+    input.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            event.target.blur();
+        }
     });
     cell.appendChild(input);
     let runBtn = document.createElement("button");
