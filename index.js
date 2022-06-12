@@ -143,7 +143,6 @@ function updateFeetDisplay() {
 }
 
 function updateSize() {
-    console.log(window.innerHeight);
     let innerHeight = window.innerHeight;
     let bodyOffset = 16;
     document.getElementById("main-body").style.height = (innerHeight - bodyOffset) + "px";
@@ -180,7 +179,7 @@ function handleClickSwap(event, col, row) {
             cell.innerHTML = imgElemPlus;
         }
     } catch (e) {
-        console.error(e);
+        console.debug(e);
     }
 }
 
@@ -208,7 +207,7 @@ function handleRun(event, col) {
         let footInput = document.getElementById("input-foot-" + colEnd);
         footInput.classList.add("selected-input");
     } catch (e) {
-        console.error(e);
+        console.debug(e);
     }
 }
 
@@ -262,13 +261,11 @@ function updateLeftPanel() {
     let shuffleHeadBtn = document.getElementById("shuffle-head-btn");
     shuffleHeadBtn.addEventListener("click", function (event) {
         shuffleHeads();
-        console.log(heads);
         updateHeadDisplay();
     });
     let shuffleFootBtn = document.getElementById("shuffle-foot-btn");
     shuffleFootBtn.addEventListener("click", function (event) {
         shuffleFeet();
-        console.log(feet);
         updateFeetDisplay();
     });
     let showFootBtn = document.getElementById("show-foot-btn");
