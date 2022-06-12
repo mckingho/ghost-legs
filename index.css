@@ -59,6 +59,11 @@ table#main-board td.run-top-left {
     border-left: 1px red solid;
 }
 
+table#main-board td.cell-with-img {
+    vertical-align: top;
+    text-align: center;
+}
+
 table#main-board td.head-cell {
     padding-left: 2px;
     padding-right: 8px;
@@ -71,11 +76,29 @@ table#main-board td.foot-cell {
     padding-right: 8px;
 }
 
-input[type=text].show-feet-input {
+input[type=text].show-foot-input {
     display: block;
 }
 
-input[type=text].hide-feet-input {
+input[type=text].hide-foot-input {
+    display: none;
+}
+
+table#main-board td.foot-cell-with-img {
+    text-align: center;
+}
+
+img.foot-cell-icon {
+    width: 14px;
+    height: 14px;
+    transform: rotate(45deg);
+}
+
+img.show-foot-cell-icon {
+    display: block;
+}
+
+img.hide-foot-cell-icon {
     display: none;
 }
 

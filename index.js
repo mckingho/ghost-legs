@@ -17,6 +17,8 @@ import {
 } from './ghost-legs.js';
 
 let isShowFeetValue = true;
+let imgElemPlus = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"+\">";
+let imgElemRemove = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"x\" style=\"transform: rotate(45deg);\">";
 
 function update() {
     updateBoard();
@@ -50,7 +52,7 @@ function updateBoard() {
         addHeadCell(headRow, c);
     }
     let cell = headRow.insertCell(heads.length);
-    cell.innerHTML = "+";
+    cell.innerHTML = "<img src=\"icons/add.svg\" width=\"24px\" height=\"24px\" alt=\"+\">";
     cell.classList.add("head-plus-cell");
     cell.addEventListener("click", function (event) {
         handleAddColumn(event);
@@ -65,6 +67,8 @@ function addCell(row, c, lv) {
     if (c < columns - 1) {
         // no swap display at last column
         cell.classList.add("no-swap");
+        cell.classList.add("cell-with-img");
+        cell.innerHTML = imgElemPlus;
     }
     cell.setAttribute("id", "cell-" + idx);
     cell.addEventListener("click", function (event) {
@@ -79,7 +83,7 @@ function addFootCell(footRow, c) {
     let input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-foot-" + c);
-    input.classList.add(isShowFeetValue ? "show-feet-input" : "hide-feet-input");
+    input.classList.add(isShowFeetValue ? "show-foot-input" : "hide-foot-input");
     input.value = feet[c];
     input.addEventListener("input", function (event) {
         setFoot(c, event.target.value);
@@ -90,6 +94,12 @@ function addFootCell(footRow, c) {
         }
     });
     cell.appendChild(input);
+    let hideImg = document.createElement("img");
+    hideImg.src = "icons/prohibited-horizontal.svg";
+    hideImg.alt = "\\";
+    hideImg.classList.add("foot-cell-icon");
+    hideImg.classList.add(isShowFeetValue ? "hide-foot-cell-icon" : "show-foot-cell-icon");
+    cell.appendChild(hideImg);
 }
 
 function addHeadCell(headRow, c) {
@@ -154,14 +164,20 @@ function handleClickSwap(event, col, row) {
         resetRun();
 
         let cell = event.srcElement;
+        if (cell.tagName.toLowerCase() !== "td") {
+            // handle event triggered from child element
+            cell = cell.parentElement;
+        };
         if (cell.classList.contains("no-swap")) {
             addSwap(col, row);
             cell.classList.remove("no-swap");
             cell.classList.add("swap");
+            cell.innerHTML = imgElemRemove;
         } else if (cell.classList.contains("swap")) {
             removeSwap(col, row);
             cell.classList.remove("swap");
             cell.classList.add("no-swap");
+            cell.innerHTML = imgElemPlus;
         }
     } catch (e) {
         console.error(e);
@@ -223,6 +239,8 @@ function handleAddColumn() {
         let idx = (newCol - 1) * rows + lv;
         let prevCell = document.getElementById("cell-" + idx);
         prevCell.classList.add("no-swap");
+        prevCell.classList.add("cell-with-img");
+        prevCell.innerHTML = imgElemPlus;
     }
     let footRow = document.getElementById("row-foot");
     addFootCell(footRow, newCol);
@@ -250,16 +268,26 @@ function updateLeftPanel() {
     showFootBtn.addEventListener("click", function (event) {
         isShowFeetValue = !isShowFeetValue;
         if (isShowFeetValue) {
-            let cells = document.querySelectorAll(".hide-feet-input");
+            let cells = document.querySelectorAll(".hide-foot-input");
             [].forEach.call(cells, function (cell) {
-                cell.classList.remove("hide-feet-input");
-                cell.classList.add("show-feet-input");
+                cell.classList.remove("hide-foot-input");
+                cell.classList.add("show-foot-input");
+            });
+            let imgs = document.querySelectorAll(".show-foot-cell-icon");
+            [].forEach.call(imgs, function (img) {
+                img.classList.remove("show-foot-cell-icon");
+                img.classList.add("hide-foot-cell-icon");
             });
         } else {
-            let cells = document.querySelectorAll(".show-feet-input");
+            let cells = document.querySelectorAll(".show-foot-input");
             [].forEach.call(cells, function (cell) {
-                cell.classList.remove("show-feet-input");
-                cell.classList.add("hide-feet-input");
+                cell.classList.remove("show-foot-input");
+                cell.classList.add("hide-foot-input");
+            });
+            let imgs = document.querySelectorAll(".hide-foot-cell-icon");
+            [].forEach.call(imgs, function (img) {
+                img.classList.remove("hide-foot-cell-icon");
+                img.classList.add("show-foot-cell-icon");
             });
         }
         event.target.innerText = isShowFeetValue ? "HIDE" : "SHOW";
