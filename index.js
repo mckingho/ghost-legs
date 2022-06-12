@@ -18,7 +18,8 @@ import {
 
 function update() {
     updateBoard();
-    updateBoardSize();
+    updateLeftPanel();
+    updateSize();
 }
 
 function updateBoard() {
@@ -77,6 +78,9 @@ function addFootCell(footRow, c) {
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-foot-" + c);
     input.value = feet[c];
+    input.addEventListener("input", function (event) {
+        setFoot(c, event.target.value);
+    });
     cell.appendChild(input);
 }
 
@@ -88,6 +92,9 @@ function addHeadCell(headRow, c) {
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-head-" + c);
     input.value = heads[c];
+    input.addEventListener("input", function (event) {
+        setHead(c, event.target.value);
+    });
     cell.appendChild(input);
     let runBtn = document.createElement("button");
     runBtn.classList.add("run-btn");
@@ -98,7 +105,21 @@ function addHeadCell(headRow, c) {
     });
 }
 
-function updateBoardSize() {
+function updateHeadDisplay() {
+    for (let c = 0; c < heads.length; c += 1) {
+        let input = document.getElementById("input-head-" + c);
+        input.value = heads[c];
+    }
+}
+
+function updateFeetDisplay() {
+    for (let c = 0; c < feet.length; c += 1) {
+        let input = document.getElementById("input-foot-" + c);
+        input.value = feet[c];
+    }
+}
+
+function updateSize() {
     console.log(window.innerHeight);
     let innerHeight = window.innerHeight;
     let bodyOffset = 16;
@@ -195,8 +216,27 @@ function handleAddColumn() {
     let headRow = document.getElementById("row-head");
     addHeadCell(headRow, newCol);
 
-    updateBoardSize();
+    updateSize();
 }
 
-window.onresize = updateBoardSize;
+function updateLeftPanel() {
+    let shuffleHeadBtn = document.getElementById("shuffle-head-btn");
+    shuffleHeadBtn.addEventListener("click", function (event) {
+        shuffleHeads();
+        console.log(heads);
+        updateHeadDisplay();
+    });
+    let shuffleFootBtn = document.getElementById("shuffle-foot-btn");
+    shuffleFootBtn.addEventListener("click", function (event) {
+        shuffleFeet();
+        console.log(feet);
+        updateFeetDisplay();
+    });
+    let showFootBtn = document.getElementById("show-foot-btn");
+    showFootBtn.addEventListener("click", function (event) {
+        handleShowFoot(event, c);
+    });
+}
+
+window.onresize = updateSize;
 window.update = update;
