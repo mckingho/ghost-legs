@@ -203,6 +203,10 @@ function handleRun(event, col) {
         head.classList.add("run-left");
         let foot = document.getElementById("foot-cell-" + colEnd);
         foot.classList.add("run-left");
+        let headInput = document.getElementById("input-head-" + col);
+        headInput.classList.add("selected-input");
+        let footInput = document.getElementById("input-foot-" + colEnd);
+        footInput.classList.add("selected-input");
     } catch (e) {
         console.error(e);
     }
@@ -220,6 +224,10 @@ function resetRun() {
     cells = document.querySelectorAll(".run-top-left");
     [].forEach.call(cells, function (cell) {
         cell.classList.remove("run-top-left");
+    });
+    cells = document.querySelectorAll(".selected-input");
+    [].forEach.call(cells, function (cell) {
+        cell.classList.remove("selected-input");
     });
 }
 
