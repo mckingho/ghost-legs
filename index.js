@@ -16,6 +16,8 @@ import {
     setFoot,
 } from './ghost-legs.js';
 
+let isShowFeetValue = true;
+
 function update() {
     updateBoard();
     updateLeftPanel();
@@ -77,6 +79,7 @@ function addFootCell(footRow, c) {
     let input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-foot-" + c);
+    input.classList.add(isShowFeetValue ? "show-feet-input" : "hide-feet-input");
     input.value = feet[c];
     input.addEventListener("input", function (event) {
         setFoot(c, event.target.value);
@@ -233,8 +236,23 @@ function updateLeftPanel() {
         updateFeetDisplay();
     });
     let showFootBtn = document.getElementById("show-foot-btn");
+    showFootBtn.innerText = isShowFeetValue ? "HIDE" : "SHOW";
     showFootBtn.addEventListener("click", function (event) {
-        handleShowFoot(event, c);
+        isShowFeetValue = !isShowFeetValue;
+        if (isShowFeetValue) {
+            let cells = document.querySelectorAll(".hide-feet-input");
+            [].forEach.call(cells, function (cell) {
+                cell.classList.remove("hide-feet-input");
+                cell.classList.add("show-feet-input");
+            });
+        } else {
+            let cells = document.querySelectorAll(".show-feet-input");
+            [].forEach.call(cells, function (cell) {
+                cell.classList.remove("show-feet-input");
+                cell.classList.add("hide-feet-input");
+            });
+        }
+        event.target.innerText = isShowFeetValue ? "HIDE" : "SHOW";
     });
 }
 

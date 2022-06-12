@@ -71,6 +71,14 @@ table#main-board td.foot-cell {
     padding-right: 8px;
 }
 
+input[type=text].show-feet-input {
+    display: block;
+}
+
+input[type=text].hide-feet-input {
+    display: none;
+}
+
 table#main-board td.head-plus-cell {
     vertical-align: top;
     border-left: 1px grey dashed;
@@ -103,4 +111,8 @@ button {
 button:hover {
     background-color: #F3F4F6;
     transition-duration: 0.1s;
+}
+
+#show-foot-btn {
+    width: 100%;
 }
