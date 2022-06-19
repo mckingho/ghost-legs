@@ -48,15 +48,18 @@ table#main-board td.swap {
 
 table#main-board td.run-top {
     border-top: 1px red solid;
+    box-shadow: inset 0px 2px 0px 0px rgb(255 0 0 / 25%), 0px -2px 0px 0px rgb(255 0 0 / 25%);
 }
 
 table#main-board td.run-left {
     border-left: 1px red solid;
+    box-shadow: inset 4px 0px 0px -2px rgb(255 0 0 / 25%), -2px 0px 0px 0px rgb(255 0 0 / 25%);
 }
 
 table#main-board td.run-top-left {
     border-top: 1px red solid;
     border-left: 1px red solid;
+    box-shadow: inset 4px 4px 0px -2px rgb(255 0 0 / 25%), -2px -2px 0px 0px rgb(255 0 0 / 25%);
 }
 
 table#main-board td.cell-with-img {
