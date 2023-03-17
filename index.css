@@ -1,5 +1,6 @@
 body {
     margin: 8px;
+    background: #F5F5F5;
 }
 
 main {
@@ -117,6 +118,7 @@ input[type=text] {
     outline: none;
     width: 75%;
     text-overflow: ellipsis;
+    background-color: #F5F5F5;
 }
 
 input[type=text]:focus {
