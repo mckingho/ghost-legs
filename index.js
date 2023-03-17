@@ -55,7 +55,7 @@ function updateBoard() {
     cell.innerHTML = "<img src=\"icons/add.svg\" width=\"24px\" height=\"24px\" alt=\"+\">";
     cell.classList.add("head-plus-cell");
     cell.addEventListener("click", function (event) {
-        handleAddColumn(event);
+        handleAddColumn();
     })
 }
 
