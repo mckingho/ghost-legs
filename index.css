@@ -31,6 +31,7 @@ main {
 
 table#main-board {
     width: 100%;
+    border-spacing: 0px;
 }
 
 table#main-board td {
