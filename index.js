@@ -152,9 +152,9 @@ function updateSize() {
     let cols = getColumns();
     let cellWidth = Math.floor(100 / cols);
     let tds = document.getElementsByTagName("td");
-    for (let i = 0; i < tds.length; i += 1) {
-        tds[i].style.height = cellHeight + "px";
-        tds[i].style.width = cellWidth + "%";
+    for (const element of tds) {
+        element.style.height = cellHeight + "px";
+        element.style.width = cellWidth + "%";
     }
 }
 
