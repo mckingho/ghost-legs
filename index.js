@@ -17,8 +17,8 @@ import {
 } from './ghost-legs.js';
 
 let isShowFeetValue = true;
-let imgElemPlus = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"+\">";
-let imgElemRemove = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"x\" style=\"transform: rotate(45deg);\">";
+const imgElemPlus = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"+\">";
+const imgElemRemove = "<img src=\"icons/add.svg\" width=\"12px\" height=\"12px\" alt=\"x\" style=\"transform: rotate(45deg);\">";
 
 function update() {
     updateBoard();
@@ -28,31 +28,31 @@ function update() {
 }
 
 function updateBoard() {
-    let table = document.getElementById("main-board");
-    let columns = getColumns();
-    let rows = getRows();
+    const table = document.getElementById("main-board");
+    const columns = getColumns();
+    const rows = getRows();
     for (let lv = 0; lv < rows; lv += 1) {
-        let row = table.insertRow(lv);
+        const row = table.insertRow(lv);
         row.setAttribute("id", "row-" + lv);
         for (let c = 0; c < columns; c += 1) {
             addCell(row, c, lv);
         }
     }
 
-    let foot = table.createTFoot();
-    let footRow = foot.insertRow(0);
+    const foot = table.createTFoot();
+    const footRow = foot.insertRow(0);
     footRow.setAttribute("id", "row-foot");
     for (let c = 0; c < feet.length; c += 1) {
         addFootCell(footRow, c);
     }
 
-    let head = table.createTHead();
-    let headRow = head.insertRow(0);
+    const head = table.createTHead();
+    const headRow = head.insertRow(0);
     headRow.setAttribute("id", "row-head");
     for (let c = 0; c < heads.length; c += 1) {
         addHeadCell(headRow, c);
     }
-    let cell = headRow.insertCell(heads.length);
+    const cell = headRow.insertCell(heads.length);
     cell.innerHTML = "<img src=\"icons/add.svg\" width=\"24px\" height=\"24px\" alt=\"+\">";
     cell.classList.add("head-plus-cell");
     cell.addEventListener("click", function (event) {
@@ -61,10 +61,10 @@ function updateBoard() {
 }
 
 function addCell(row, c, lv) {
-    let columns = getColumns();
-    let rows = getRows();
-    let idx = c * rows + lv;
-    let cell = row.insertCell(c);
+    const columns = getColumns();
+    const rows = getRows();
+    const idx = c * rows + lv;
+    const cell = row.insertCell(c);
     if (c < columns - 1) {
         // no swap display at last column
         cell.classList.add("no-swap");
@@ -78,10 +78,10 @@ function addCell(row, c, lv) {
 }
 
 function addFootCell(footRow, c) {
-    let cell = footRow.insertCell(c);
+    const cell = footRow.insertCell(c);
     cell.classList.add("foot-cell");
     cell.setAttribute("id", "foot-cell-" + c);
-    let input = document.createElement("input");
+    const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-foot-" + c);
     input.classList.add(isShowFeetValue ? "show-foot-input" : "hide-foot-input");
@@ -95,7 +95,7 @@ function addFootCell(footRow, c) {
         }
     });
     cell.appendChild(input);
-    let hideImg = document.createElement("img");
+    const hideImg = document.createElement("img");
     hideImg.src = "icons/prohibited-horizontal.svg";
     hideImg.alt = "\\";
     hideImg.classList.add("foot-cell-icon");
@@ -104,10 +104,10 @@ function addFootCell(footRow, c) {
 }
 
 function addHeadCell(headRow, c) {
-    let cell = headRow.insertCell(c);
+    const cell = headRow.insertCell(c);
     cell.classList.add("head-cell");
     cell.setAttribute("id", "head-cell-" + c);
-    let input = document.createElement("input");
+    const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-head-" + c);
     input.value = heads[c];
@@ -120,7 +120,7 @@ function addHeadCell(headRow, c) {
         }
     });
     cell.appendChild(input);
-    let runBtn = document.createElement("button");
+    const runBtn = document.createElement("button");
     runBtn.classList.add("run-btn");
     runBtn.innerHTML = "RUN";
     cell.appendChild(runBtn);
@@ -131,28 +131,28 @@ function addHeadCell(headRow, c) {
 
 function updateHeadDisplay() {
     for (let c = 0; c < heads.length; c += 1) {
-        let input = document.getElementById("input-head-" + c);
+        const input = document.getElementById("input-head-" + c);
         input.value = heads[c];
     }
 }
 
 function updateFeetDisplay() {
     for (let c = 0; c < feet.length; c += 1) {
-        let input = document.getElementById("input-foot-" + c);
+        const input = document.getElementById("input-foot-" + c);
         input.value = feet[c];
     }
 }
 
 function updateSize() {
-    let innerHeight = window.innerHeight;
-    let bodyOffset = 16;
+    const innerHeight = window.innerHeight;
+    const bodyOffset = 16;
     document.getElementById("main-body").style.height = (innerHeight - bodyOffset) + "px";
 
-    let cellOffset = 4;
-    let cellHeight = Math.floor(innerHeight / 12) - cellOffset;
-    let cols = getColumns();
-    let cellWidth = Math.floor(100 / cols);
-    let tds = document.getElementsByTagName("td");
+    const cellOffset = 4;
+    const cellHeight = Math.floor(innerHeight / 12) - cellOffset;
+    const cols = getColumns();
+    const cellWidth = Math.floor(100 / cols);
+    const tds = document.getElementsByTagName("td");
     for (const element of tds) {
         element.style.height = cellHeight + "px";
         element.style.width = cellWidth + "%";
@@ -188,9 +188,9 @@ function handleRun(event, col) {
     try {
         resetRun();
 
-        let { cellsRoute: route, colEnd } = runRoute(col);
+        const { cellsRoute: route, colEnd } = runRoute(col);
         for (let idx = 0; idx < route.length; idx += 1) {
-            let cell = document.getElementById("cell-" + idx);
+            const cell = document.getElementById("cell-" + idx);
             if (route[idx] == ROUTE_TOP) {
                 cell.classList.add("run-top");
             } else if (route[idx] == ROUTE_LEFT) {
@@ -199,13 +199,13 @@ function handleRun(event, col) {
                 cell.classList.add("run-top-left");
             }
         }
-        let head = document.getElementById("head-cell-" + col);
+        const head = document.getElementById("head-cell-" + col);
         head.classList.add("run-left");
-        let foot = document.getElementById("foot-cell-" + colEnd);
+        const foot = document.getElementById("foot-cell-" + colEnd);
         foot.classList.add("run-left");
-        let headInput = document.getElementById("input-head-" + col);
+        const headInput = document.getElementById("input-head-" + col);
         headInput.classList.add("selected-input");
-        let footInput = document.getElementById("input-foot-" + colEnd);
+        const footInput = document.getElementById("input-foot-" + colEnd);
         footInput.classList.add("selected-input");
     } catch (e) {
         console.debug(e);
@@ -236,30 +236,30 @@ function handleAddColumn() {
 
     addColumn();
 
-    let columns = getColumns();
-    let newCol = columns - 1;
+    const columns = getColumns();
+    const newCol = columns - 1;
 
-    let rows = getRows();
+    const rows = getRows();
     for (let lv = 0; lv < rows; lv += 1) {
-        let row = document.getElementById("row-" + lv);
+        const row = document.getElementById("row-" + lv);
         addCell(row, newCol, lv);
         // set swap display to previouly last column
-        let idx = (newCol - 1) * rows + lv;
-        let prevCell = document.getElementById("cell-" + idx);
+        const idx = (newCol - 1) * rows + lv;
+        const prevCell = document.getElementById("cell-" + idx);
         prevCell.classList.add("no-swap");
         prevCell.classList.add("cell-with-img");
         prevCell.innerHTML = imgElemPlus;
     }
-    let footRow = document.getElementById("row-foot");
+    const footRow = document.getElementById("row-foot");
     addFootCell(footRow, newCol);
-    let headRow = document.getElementById("row-head");
+    const headRow = document.getElementById("row-head");
     addHeadCell(headRow, newCol);
 
     updateSize();
 }
 
 function updateLeftPanel() {
-    let shuffleHeadBtn = document.getElementById("shuffle-head-btn");
+    const shuffleHeadBtn = document.getElementById("shuffle-head-btn");
     shuffleHeadBtn.addEventListener("click", function (event) {
         shuffleHeads();
         updateHeadDisplay();
@@ -269,33 +269,33 @@ function updateLeftPanel() {
         const body = document.querySelector("body");
         body.classList.toggle('dark');
     });
-    let shuffleFootBtn = document.getElementById("shuffle-foot-btn");
+    const shuffleFootBtn = document.getElementById("shuffle-foot-btn");
     shuffleFootBtn.addEventListener("click", function (event) {
         shuffleFeet();
         updateFeetDisplay();
     });
-    let showFootBtn = document.getElementById("show-foot-btn");
+    const showFootBtn = document.getElementById("show-foot-btn");
     showFootBtn.innerText = isShowFeetValue ? "HIDE" : "SHOW";
     showFootBtn.addEventListener("click", function (event) {
         isShowFeetValue = !isShowFeetValue;
         if (isShowFeetValue) {
-            let cells = document.querySelectorAll(".hide-foot-input");
+            const cells = document.querySelectorAll(".hide-foot-input");
             [].forEach.call(cells, function (cell) {
                 cell.classList.remove("hide-foot-input");
                 cell.classList.add("show-foot-input");
             });
-            let imgs = document.querySelectorAll(".show-foot-cell-icon");
+            const imgs = document.querySelectorAll(".show-foot-cell-icon");
             [].forEach.call(imgs, function (img) {
                 img.classList.remove("show-foot-cell-icon");
                 img.classList.add("hide-foot-cell-icon");
             });
         } else {
-            let cells = document.querySelectorAll(".show-foot-input");
+            const cells = document.querySelectorAll(".show-foot-input");
             [].forEach.call(cells, function (cell) {
                 cell.classList.remove("show-foot-input");
                 cell.classList.add("hide-foot-input");
             });
-            let imgs = document.querySelectorAll(".hide-foot-cell-icon");
+            const imgs = document.querySelectorAll(".hide-foot-cell-icon");
             [].forEach.call(imgs, function (img) {
                 img.classList.remove("hide-foot-cell-icon");
                 img.classList.add("show-foot-cell-icon");

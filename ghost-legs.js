@@ -32,7 +32,7 @@ function getRows() {
 
 function addSwap(col, row) {
     checkAddSwap(col, row);
-    let index = col * rows + row;
+    const index = col * rows + row;
     cells[index] = CELL_SWAP;
 }
 
@@ -53,7 +53,7 @@ function checkAddSwap(col, row) {
     if (row < 0 || row >= rows) {
         throw new Error("invalid row");
     }
-    let index = col * rows + row;
+    const index = col * rows + row;
     if (index - rows >= 0 && cells[index - rows] == CELL_SWAP) {
         throw new Error("invalid swap position");
     }
@@ -79,7 +79,7 @@ function runRoute(col) {
         throw new Error("invalid col");
     }
 
-    let cellsRoute = Array(columns * rows).fill(CELL_DEFAULT);
+    const cellsRoute = Array(columns * rows).fill(CELL_DEFAULT);
     let currentCol = col;
     for (let r = 0; r < rows; r += 1) {
         // check left swap
