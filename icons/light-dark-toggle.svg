@@ -1,0 +1,15 @@
+<svg version="1.1" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .dark {
+            fill: black;
+            stroke: black;
+        }
+
+        .light {
+            fill: transparent;
+            stroke: black;
+        }
+    </style>
+    <path class="dark" d="M 50 1 A 49 49 0 0 0 50 99 L 50 1 Z" />
+    <path class="light" d="M 50 1 A 49 49 0 0 1 50 99 L 50 1 Z" />
+</svg>
