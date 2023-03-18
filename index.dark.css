@@ -29,3 +29,12 @@ body.dark button {
 body.dark button:hover {
     background-color: #2D2D2D;
 }
+
+body.dark #light-dark-btn {
+    background-color: #C4C4C4;
+}
+
+body.dark #light-dark-btn-img {
+    /* rotate fill side at the top */
+    transform: rotate(90deg);
+}

@@ -19,6 +19,10 @@ main {
     position: relative;
 }
 
+.left-panel-els {
+    margin-bottom: 16px;
+}
+
 #right-panel {
     display: inline-block;
     flex: 1;
@@ -145,6 +149,23 @@ button {
 button:hover {
     background-color: #F3F4F6;
     transition-duration: 0.1s;
+}
+
+#light-dark-btn {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 6px;
+    padding: 2px;
+    cursor: pointer;
+    background-color: #FAFBFC;
+}
+
+#light-dark-btn-img {
+    width: 24px;
+    height: 24px;
+    /* rotate fill side at the bottom */
+    transform: rotate(-90deg);
+    transition: transform 0.8s;
 }
 
 #show-foot-btn {
