@@ -110,6 +110,7 @@ img.hide-foot-cell-icon {
 table#main-board td.head-plus-cell {
     vertical-align: top;
     border-left: 1px grey dashed;
+    cursor: pointer;
 }
 
 input[type=text] {
