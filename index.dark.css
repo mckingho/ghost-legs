@@ -1,0 +1,31 @@
+body.dark {
+    background: #1D1B1B;
+}
+
+body.dark main {
+    color: #FFFFFF;
+}
+
+body.dark table#main-board td.no-swap {
+    border-top: 1px hsl(0, 0%, 25%) dashed;
+}
+
+body.dark input[type=text] {
+    background-color: #1D1B1B;
+    color: #FFFFFF;
+}
+
+body.dark input[type=text]:focus {
+    background-color: #2D2D2D;
+}
+
+body.dark button {
+    background-color: #1D1B1B;
+    border: 1px solid hsl(0, 0%, 45%);
+    box-shadow: rgb(27 31 35 / 4%) 0 1px 0, rgb(255 255 255 / 25%) 0 1px 0;
+    color: #FFFFFF;
+}
+
+body.dark button:hover {
+    background-color: #2D2D2D;
+}
