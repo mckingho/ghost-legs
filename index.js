@@ -24,6 +24,7 @@ function update() {
     updateBoard();
     updateLeftPanel();
     updateSize();
+    setDefaultTheme();
 }
 
 function updateBoard() {
@@ -263,6 +264,11 @@ function updateLeftPanel() {
         shuffleHeads();
         updateHeadDisplay();
     });
+    const themeBtn = document.getElementById("light-dark-btn");
+    themeBtn.addEventListener("click", function () {
+        const body = document.querySelector("body");
+        body.classList.toggle('dark');
+    });
     let shuffleFootBtn = document.getElementById("shuffle-foot-btn");
     shuffleFootBtn.addEventListener("click", function (event) {
         shuffleFeet();
@@ -297,6 +303,15 @@ function updateLeftPanel() {
         }
         event.target.innerText = isShowFeetValue ? "HIDE" : "SHOW";
     });
+}
+
+// this index css default is light theme,
+// change to dark theme if window prefers dark color scheme
+function setDefaultTheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        const body = document.querySelector("body");
+        body.classList.add('dark');
+    }
 }
 
 window.onresize = updateSize;
