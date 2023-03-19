@@ -1,0 +1,23 @@
+<svg version="1.1" width="96" height="96" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .ladder {
+            stroke: black;
+            stroke-width: 12;
+        }
+
+        .route {
+            stroke: rgba(255, 0, 0, .7);
+            stroke-width: 16;
+        }
+    </style>
+    <g>
+        <line x1="12" y1="2" x2="12" y2="94" class="ladder" />
+        <line x1="84" y1="2" x2="84" y2="94" class="ladder" />
+        <line x1="12" y1="48" x2="84" y2="48" class="ladder" />
+    </g>
+    <g>
+        <line x1="12" y1="0" x2="12" y2="40" class="route" />
+        <line x1="84" y1="56" x2="84" y2="96" class="route" />
+        <line x1="4" y1="48" x2="92" y2="48" class="route" />
+    </g>
+</svg>
