@@ -46,10 +46,12 @@ table#main-board td {
 
 table#main-board td.no-swap {
     border-top: 1px #C4C4C4 dashed;
+    cursor: pointer;
 }
 
 table#main-board td.swap {
     border-top: 1px solid;
+    cursor: pointer;
 }
 
 table#main-board td.run-top {

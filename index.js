@@ -54,6 +54,7 @@ function updateBoard() {
     }
     const cell = headRow.insertCell(heads.length);
     cell.innerHTML = "<img src=\"icons/add.svg\" width=\"24px\" height=\"24px\" alt=\"+\">";
+    cell.setAttribute('title', 'Add column');
     cell.classList.add("head-plus-cell");
     cell.addEventListener("click", function (event) {
         handleAddColumn();
@@ -70,6 +71,7 @@ function addCell(row, c, lv) {
         cell.classList.add("no-swap");
         cell.classList.add("cell-with-img");
         cell.innerHTML = imgElemPlus;
+        cell.setAttribute('title', 'Add bridge');
     }
     cell.setAttribute("id", "cell-" + idx);
     cell.addEventListener("click", function (event) {
@@ -173,11 +175,13 @@ function handleClickSwap(event, col, row) {
             cell.classList.remove("no-swap");
             cell.classList.add("swap");
             cell.innerHTML = imgElemRemove;
+            cell.setAttribute('title', 'Remove bridge');
         } else if (cell.classList.contains("swap")) {
             removeSwap(col, row);
             cell.classList.remove("swap");
             cell.classList.add("no-swap");
             cell.innerHTML = imgElemPlus;
+            cell.setAttribute('title', 'Add bridge');
         }
     } catch (e) {
         console.debug(e);
@@ -249,6 +253,7 @@ function handleAddColumn() {
         prevCell.classList.add("no-swap");
         prevCell.classList.add("cell-with-img");
         prevCell.innerHTML = imgElemPlus;
+        prevCell.setAttribute('title', 'Add bridge');
     }
     const footRow = document.getElementById("row-foot");
     addFootCell(footRow, newCol);
