@@ -55,10 +55,18 @@ function updateBoard() {
     const cell = headRow.insertCell(heads.length);
     cell.innerHTML = "<img src=\"icons/add.svg\" width=\"24px\" height=\"24px\" alt=\"+\">";
     cell.setAttribute('title', 'Add column');
+    cell.setAttribute('tabindex', '0');
+    cell.setAttribute('role', 'button');
     cell.classList.add("head-plus-cell");
-    cell.addEventListener("click", function (event) {
+    cell.addEventListener("click", function () {
         handleAddColumn();
-    })
+    });
+    cell.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            cell.click();
+        }
+    });
 }
 
 function addCell(row, c, lv) {
@@ -72,10 +80,18 @@ function addCell(row, c, lv) {
         cell.classList.add("cell-with-img");
         cell.innerHTML = imgElemPlus;
         cell.setAttribute('title', 'Add bridge');
+        cell.setAttribute('tabindex', '0');
+        cell.setAttribute('role', 'button');
     }
     cell.setAttribute("id", "cell-" + idx);
     cell.addEventListener("click", function (event) {
         handleClickSwap(event, c, lv);
+    });
+    cell.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            cell.click();
+        }
     });
 }
 
@@ -256,6 +272,8 @@ function handleAddColumn() {
         prevCell.classList.add("cell-with-img");
         prevCell.innerHTML = imgElemPlus;
         prevCell.setAttribute('title', 'Add bridge');
+        prevCell.setAttribute('tabindex', '0');
+        prevCell.setAttribute('role', 'button');
     }
     const footRow = document.getElementById("row-foot");
     addFootCell(footRow, newCol);
@@ -275,6 +293,12 @@ function updateLeftPanel() {
     themeBtn.addEventListener("click", function () {
         const body = document.querySelector("body");
         body.classList.toggle('dark');
+    });
+    themeBtn.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            themeBtn.click();
+        }
     });
     const shuffleFootBtn = document.getElementById("shuffle-foot-btn");
     shuffleFootBtn.addEventListener("click", function (event) {
