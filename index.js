@@ -86,6 +86,7 @@ function addFootCell(footRow, c) {
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-foot-" + c);
+    input.setAttribute("placeholder", "<Option " + (c + 1) + ">");
     input.classList.add(isShowFeetValue ? "show-foot-input" : "hide-foot-input");
     input.value = feet[c];
     input.addEventListener("input", function (event) {
@@ -112,6 +113,7 @@ function addHeadCell(headRow, c) {
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("id", "input-head-" + c);
+    input.setAttribute("placeholder", "<Subject " + (c + 1) + ">");
     input.value = heads[c];
     input.addEventListener("input", function (event) {
         setHead(c, event.target.value);

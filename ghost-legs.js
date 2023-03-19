@@ -17,9 +17,8 @@ function reset() {
     rows = 10;
 
     cells = Array(columns * rows).fill(CELL_DEFAULT);
-    heads = Array.from({ length: columns }, (_, i) => (i + 1).toString());
+    heads = Array(columns).fill("");
     feet = Array(columns).fill("");
-    feet[0] = "*";
 }
 
 function getColumns() {
@@ -64,7 +63,7 @@ function checkAddSwap(col, row) {
 
 function addColumn() {
     columns += 1;
-    heads.push(columns.toString());
+    heads.push("");
     cells.push(...Array(rows).fill(CELL_DEFAULT));
     feet.push("");
 }
